@@ -1,24 +1,31 @@
-import wrap_py, wrap_py.ru
+import wrap
 
+wrap.add_sprite_dir("C:/Users/nnata/wrap_py_catalog")
 speed = 1
 
+wrap.world.create_world(1930, 1010)
+
+
+pipe = wrap.sprite.add("flappy_bird",700,500,"pipe")
+wrap.sprite.set_size(pipe, 85, 370)
+wrap.sprite.move_bottom_to(pipe,1010)
 
 
 
-
-wrap_py.world.create_world(1930, 1010)
-
-player = wrap_py.sprite.add_sprite("flappy_bird", 500, 500)
+# игрок
+player = wrap.sprite.add("flappy_bird", 500, 500)
+wrap.sprite.set_size(player, 85, 70)
 
 
 # управление
-@wrap_py.on_key_down(wrap_py.K_SPACE)
+@wrap.on_key_down(wrap.K_SPACE)
 def fly():
     global speed
-    speed=-22
+    speed = -22
 
-@wrap_py.always(50)
+
+@wrap.always(30)
 def fall():
     global speed
-    wrap_py.sprite.move_sprite_by(player,0,speed)
-    speed+=1
+    wrap.sprite.move(player, 0, speed)
+    speed += 0.5
