@@ -1,4 +1,4 @@
-import wrap
+import wrap,os
 
 wrap.add_sprite_dir("C:/Users/nnata/wrap_py_catalog")
 speed = 1
@@ -47,11 +47,43 @@ def fall():
     global speed
     wrap.sprite.move(player, 0, speed)
     speed+=1
+    if wrap.sprite.get_bottom(player) >= 800:
+        os._exit(6)
+
+
 
 @wrap.always(30)
 def dvishenie():
+    if wrap.sprite.is_collide_sprite(pipe,player):
+        os._exit(0)
+    if wrap.sprite.is_collide_sprite(pipe2,player):
+        os._exit(0)
     wrap.sprite.move(pipe,-3,0)
     wrap.sprite.move(pipe2, -3, 0)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
