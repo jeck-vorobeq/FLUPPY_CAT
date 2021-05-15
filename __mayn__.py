@@ -38,17 +38,28 @@ wrap.sprite.set_height_proportionally(player, 100)
 @wrap.on_key_down(wrap.K_SPACE)
 def fly():
     global speed
-    speed = -25
+    speed = -10
 
 
 # падение
 @wrap.always(30)
 def fall():
     global speed
+
     wrap.sprite.move(player, 0, speed)
-    speed+=1
+    speed+=0.2
     if wrap.sprite.get_bottom(player) >= 800:
         os._exit(6)
+    if wrap.sprite.get_top(player) <= 0:
+        os._exit(6)
+    a = wrap.sprite.get_angle(player)
+    b=a+ speed/2
+    if b <0:
+        b=0
+    if b >180:
+        b=180
+    wrap.sprite.set_angle(player, b )
+
 
 
 
@@ -58,8 +69,8 @@ def dvishenie():
         os._exit(0)
     if wrap.sprite.is_collide_sprite(pipe2,player):
         os._exit(0)
-    wrap.sprite.move(pipe,-3,0)
-    wrap.sprite.move(pipe2, -3, 0)
+#     wrap.sprite.move(pipe,-3,0)
+#     wrap.sprite.move(pipe2, -3, 0)
 
 
 
