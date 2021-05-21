@@ -1,10 +1,10 @@
-import wrap,os
+import wrap,os,random
 
 wrap.add_sprite_dir("C:/Users/nnata/wrap_py_catalog")
 speed = 1
 
 # окно
-wrap.world.create_world(1930, 1010,1200,0)
+wrap.world.create_world(1930, 1010  )
 shon = wrap.sprite.add("backgrounds", 965, 505)
 wrap.sprite.set_size(shon, 1929, 1009)
 
@@ -36,7 +36,7 @@ wrap.sprite.set_height_proportionally(player, 100)
 @wrap.on_key_down(wrap.K_SPACE)
 def fly():
     global speed
-    speed = -20
+    speed = -5
 
 
 # падение
@@ -65,13 +65,22 @@ def fall():
 def dvishenie():
     for p in pipelist:
 
-        if wrap.sprite.is_collide_sprite(p,player):
-            os._exit(0)
+        #if wrap.sprite.is_collide_sprite(p,player):
+           #  os._exit(0)
         wrap.sprite.move(p,-3,0)
 
-
-
-
+@wrap.always(1000)
+def dobpipe():
+    pipes=wrap.sprite.add("flappy_bird",500,234,"pipe")
+    pipes2=wrap.sprite.add("flappy_bird",500,802,"pipe")
+    ytoppipe=random.randint(300,500)
+    wrap.sprite.set_size(pipes2,85,ytoppipe)
+    wrap.sprite.set_size(pipes, 85, ytoppipe-250)
+    wrap.sprite.set_reverse_y(pipes,True)
+    wrap.sprite.move_bottom_to(pipes2,802)
+    wrap.sprite.move_top_to(pipes, 0)
+    pipelist.append(pipes)
+    pipelist.append(pipes2)
 
 
 
