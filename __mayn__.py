@@ -9,15 +9,8 @@ shon = wrap.sprite.add("backgrounds", 965, 505)
 wrap.sprite.set_size(shon, 1929, 1009)
 
 # трубы
-pipe3 = wrap.sprite.add("flappy_bird", 712, 500, "pipe")
-pipe = wrap.sprite.add("flappy_bird", 700, 500, "pipe")
-wrap.sprite.set_size(pipe, 85, 370)
-wrap.sprite.move_bottom_to(pipe, 802)
-pipe2 = wrap.sprite.add("flappy_bird", 700, 500, "pipe")
-wrap.sprite.set_reverse_y(pipe2,True)
-wrap.sprite.set_size(pipe2, 85, 370)
-wrap.sprite.move_top_to(pipe2,0)
-pipelist=[pipe,pipe2,pipe3]
+pipelist = []
+
 
 
 
@@ -28,7 +21,7 @@ pipelist=[pipe,pipe2,pipe3]
 
 
 # игрок
-player = wrap.sprite.add("flappy_bird", 500, 500, "кот")
+player = wrap.sprite.add("flappy_bird", 500, 500, "котя")
 wrap.sprite.set_height_proportionally(player, 100)
 
 
@@ -65,17 +58,18 @@ def fall():
 def dvishenie():
     for p in pipelist:
 
-        #if wrap.sprite.is_collide_sprite(p,player):
-           #  os._exit(0)
+        if wrap.sprite.is_collide_sprite(p,player):
+             os._exit(0)
         wrap.sprite.move(p,-3,0)
 
-@wrap.always(1000)
+@wrap.always(3000)
 def dobpipe():
-    pipes=wrap.sprite.add("flappy_bird",500,234,"pipe")
-    pipes2=wrap.sprite.add("flappy_bird",500,802,"pipe")
+    pipes=wrap.sprite.add("flappy_bird",1900,234,"pipe")
+    pipes2=wrap.sprite.add("flappy_bird",1900,802,"pipe")
+
     ytoppipe=random.randint(300,500)
     wrap.sprite.set_size(pipes2,85,ytoppipe)
-    wrap.sprite.set_size(pipes, 85, ytoppipe-250)
+    wrap.sprite.set_size(pipes, 85,1010-ytoppipe-350)
     wrap.sprite.set_reverse_y(pipes,True)
     wrap.sprite.move_bottom_to(pipes2,802)
     wrap.sprite.move_top_to(pipes, 0)
